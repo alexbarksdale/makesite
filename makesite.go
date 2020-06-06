@@ -6,7 +6,7 @@ import (
 )
 
 func readFile() string {
-	fileContents, err := ioutil.ReadFile("first-post.txt")
+	fileContents, err := ioutil.ReadFile("corpus/first-post.txt")
 	if err != nil {
 		panic(err)
 	}
@@ -17,5 +17,7 @@ func readFile() string {
 func renderTemplate() {}
 
 func main() {
-	fmt.Println("Hello, world!")
+	fmt.Println("Make Site | A simple cli tool to generate a static site.")
+	output := readFile()
+	fmt.Println(output)
 }
