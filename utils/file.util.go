@@ -5,8 +5,8 @@ import (
 	"log"
 )
 
-func ReadFile() string {
-	fileContents, err := ioutil.ReadFile("corpus/first-post.txt")
+func ReadFile(file string) string {
+	fileContents, err := ioutil.ReadFile("corpus/" + file)
 	if err != nil {
 		log.Fatalf("Failed to read file! %v", err)
 	}
@@ -14,8 +14,8 @@ func ReadFile() string {
 	return string(fileContents)
 }
 
-func WriteFile(tmpl []byte) {
-	if err := ioutil.WriteFile("exports/first-post.html", tmpl, 0666); err != nil {
+func WriteFile(tmpl []byte, file string) {
+	if err := ioutil.WriteFile("exports/"+file, tmpl, 0666); err != nil {
 		log.Fatalf("Failed to write file %v", err)
 	}
 }

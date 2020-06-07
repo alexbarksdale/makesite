@@ -2,13 +2,17 @@ package main
 
 import (
 	"fmt"
+	"makesite/generate"
 	"makesite/utils"
 )
 
 func main() {
-	fmt.Printf("Make Site | A simple cli tool to generate a static site. \n")
+	fmt.Printf("Make Site | A simple cli tool to generate a static site. \n\n")
 
-	// utils.WriteFile(generate.GenContent())
 	file := utils.Flags()
-	fmt.Println(file)
+	if file != "" {
+		// TODO: Create helper to do this
+		b := generate.GenContent(file)
+		utils.WriteFile(b, file)
+	}
 }
