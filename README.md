@@ -53,7 +53,7 @@ If you get stuck on any step, be sure to print the output to `stdout`!
 - [X] Edit line `4` of `README.md`. Change this line to the following, replacing `YOUR_USERNAME` and `YOUR_REPONAME` with your GitHub username and repository name respectively.
 - [X] Read in the contents of the provided `first-post.txt` file.
 - [X] Edit the provided HTML template (`template.tmpl`) to display the contents of `first-post.txt`.
-- [X] Render the contents of `first-post.txt` using Go Templates and print it to stdout.
+- [X] Render the contents of `first-post.txt` using Go Templates and print it tostdout.
 - [X] Write the HTML template to the filesystem to a file. Name it `first-post.html`.
 - [X] Manually test the generated HTML page by running `/.makesite`. Double-click the `first-post.html` file that appears in your directory after running the command to open the generated page in your browser.
 - [X] **Add, commit, and push to GitHub**.
@@ -69,7 +69,7 @@ If you get stuck on any step, be sure to print the output to `stdout`!
 
 #### v1.1 Requirements
 
-- [ ] Create 3 new `.txt` files for testing in the same directory as your project.
+- [X] Create 3 new `.txt` files for testing in the same directory as your project.
 - [ ] Add a new flag to the `makesite` command named `dir`.
 - [ ] Use the flag to find all `.txt` files in the given directory. Print them to `stdout`.
 - [ ] With the list of `.txt` files you found, generate an HTML page for each.
