@@ -14,9 +14,7 @@ func main() {
 		generate.GenDirContent(dir)
 	}
 	if file != "" {
-		// TODO: Create helper to do this
-		b := generate.GenContent(file)
-		utils.WriteFile(b, file)
+		generate.GenSite(file)
 	}
 
 }

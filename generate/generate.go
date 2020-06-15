@@ -2,7 +2,6 @@ package generate
 
 import (
 	"bytes"
-	"fmt"
 	"html/template"
 	"log"
 	"makesite/utils"
@@ -30,8 +29,12 @@ func GenContent(filename string) []byte {
 	return b.Bytes()
 }
 
-func GenDirContent(directory string) {
+func GenSite(file string) {
+	tmpl := GenContent(file)
+	utils.WriteFile(tmpl, file)
+}
 
+func GenDirContent(directory string) {
 	validDirectory := utils.DoesDirectoryExist(directory)
 
 	if !(validDirectory) {
@@ -39,6 +42,8 @@ func GenDirContent(directory string) {
 	}
 
 	files := utils.SearchTxtFiles(directory)
-	fmt.Println(files)
 
+	for _, file := range files {
+		GenSite(file)
+	}
 }
