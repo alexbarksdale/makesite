@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -61,7 +60,7 @@ func SearchTxtFiles(directory string) []string {
 
 		return nil
 	}); err != nil {
-		fmt.Println("Hello")
+		panic(err)
 	}
 
 	return files
