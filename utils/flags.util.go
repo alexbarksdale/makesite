@@ -6,7 +6,7 @@ import (
 
 // TODO: Use the flag to find all `.txt` files in the given directory. Print them to `stdout`.
 
-func Flags() string {
+func Flags() (string, string) {
 	var file string
 	var dir string
 
@@ -14,5 +14,5 @@ func Flags() string {
 	flag.StringVar(&dir, "dir", "", "Finds all '.txt' files in the given directory.")
 	flag.Parse()
 
-	return file
+	return file, dir
 }

@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -33,6 +34,16 @@ func WriteFile(tmpl []byte, file string) {
 	}
 }
 
+func DoesDirectoryExist(folder string) bool {
+	_, err := os.Stat(folder)
+
+	if os.IsNotExist(err) {
+		return false
+	}
+
+	return true
+}
+
 func SearchTxtFiles(directory string) []string {
 	var files []string
 
@@ -50,7 +61,7 @@ func SearchTxtFiles(directory string) []string {
 
 		return nil
 	}); err != nil {
-		panic(err)
+		fmt.Println("Hello")
 	}
 
 	return files

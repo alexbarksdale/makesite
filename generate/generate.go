@@ -2,6 +2,7 @@ package generate
 
 import (
 	"bytes"
+	"fmt"
 	"html/template"
 	"log"
 	"makesite/utils"
@@ -27,4 +28,17 @@ func GenContent(filename string) []byte {
 	}
 
 	return b.Bytes()
+}
+
+func GenDirContent(directory string) {
+
+	validDirectory := utils.DoesDirectoryExist(directory)
+
+	if !(validDirectory) {
+		log.Fatalf("Directory '%v' does not exist!", directory)
+	}
+
+	files := utils.SearchTxtFiles(directory)
+	fmt.Println(files)
+
 }

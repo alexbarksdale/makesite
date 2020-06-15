@@ -9,10 +9,14 @@ import (
 func main() {
 	fmt.Printf("Make Site | A simple cli tool to generate a static site. \n\n")
 
-	file := utils.Flags()
+	file, dir := utils.Flags()
+	if dir != "" {
+		generate.GenDirContent(dir)
+	}
 	if file != "" {
 		// TODO: Create helper to do this
 		b := generate.GenContent(file)
 		utils.WriteFile(b, file)
 	}
+
 }
