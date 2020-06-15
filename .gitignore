@@ -31,3 +31,5 @@
 # Binaries
 makesite
 solution.go
+
+exports/*
