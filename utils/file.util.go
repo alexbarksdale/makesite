@@ -3,10 +3,20 @@ package utils
 import (
 	"io/ioutil"
 	"log"
+	"os"
 	"path"
 	"path/filepath"
 	"runtime"
+	"strings"
 )
+
+func RootDir() string {
+	_, b, _, _ := runtime.Caller(0)
+
+	d := path.Dir(b)
+	return filepath.Dir(d)
+
+}
 
 func ReadFile(file string) string {
 	fileContents, err := ioutil.ReadFile("corpus/" + file)
@@ -23,10 +33,25 @@ func WriteFile(tmpl []byte, file string) {
 	}
 }
 
-func RootDir() string {
-	_, b, _, _ := runtime.Caller(0)
+func SearchTxtFiles(directory string) []string {
+	var files []string
 
-	d := path.Dir(b)
-	return filepath.Dir(d)
+	dir := RootDir() + "/" + directory
+	if err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+		// Prevent scanning subdirectories
+		if info.IsDir() {
+			return nil
+		}
 
+		fileName := info.Name()
+		if strings.Contains(fileName, ".txt") {
+			files = append(files, fileName)
+		}
+
+		return nil
+	}); err != nil {
+		panic(err)
+	}
+
+	return files
 }
