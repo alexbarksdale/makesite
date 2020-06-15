@@ -33,3 +33,4 @@ makesite
 solution.go
 
 exports/*
+!exports/.gitkeep
