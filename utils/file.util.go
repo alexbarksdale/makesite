@@ -28,7 +28,8 @@ func ReadFile(file string) string {
 }
 
 func WriteFile(tmpl []byte, file string) {
-	if err := ioutil.WriteFile("exports/"+file, tmpl, 0666); err != nil {
+	fileName := strings.TrimSuffix(file, filepath.Ext(file)) + ".html"
+	if err := ioutil.WriteFile("exports/"+fileName, tmpl, 0666); err != nil {
 		log.Fatalf("Failed to write file %v", err)
 	}
 }
