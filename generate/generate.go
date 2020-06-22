@@ -2,9 +2,13 @@ package generate
 
 import (
 	"bytes"
+	"fmt"
 	"html/template"
 	"log"
 	"makesite/utils"
+	"strings"
+
+	"gopkg.in/russross/blackfriday.v2"
 )
 
 type tmplData struct {
@@ -30,6 +34,14 @@ func GenContent(filename string) []byte {
 }
 
 func GenSite(file string) {
+	if strings.Contains(strings.ToLower(file), ".md") {
+		fmt.Printf("Converting %v file to html", file)
+		tmpl := GenContent(file)
+		output := blackfriday.Run(tmpl)
+		utils.WriteFile(output, file)
+		return
+	}
+	fmt.Printf("Converting %v file to html", file)
 	tmpl := GenContent(file)
 	utils.WriteFile(tmpl, file)
 }
