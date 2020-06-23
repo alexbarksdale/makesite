@@ -36,19 +36,20 @@ func WriteFile(tmpl []byte, file string) {
 
 func DoesDirectoryExist(folder string) bool {
 	_, err := os.Stat(folder)
-
 	if os.IsNotExist(err) {
 		return false
 	}
-
 	return true
+}
+
+func GetExtension(file string) string {
+	return filepath.Ext(file)
 }
 
 func SearchTxtFiles(directory string) []string {
 	var files []string
 
 	dir := RootDir() + "/" + directory
-
 	if err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		// Prevent scanning subdirectories
 		if info.IsDir() {
@@ -56,7 +57,7 @@ func SearchTxtFiles(directory string) []string {
 		}
 
 		fileName := info.Name()
-		if strings.Contains(fileName, ".txt") {
+		if GetExtension(fileName) == ".txt" {
 			files = append(files, fileName)
 		}
 

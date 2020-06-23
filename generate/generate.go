@@ -6,7 +6,6 @@ import (
 	"html/template"
 	"log"
 	"makesite/utils"
-	"strings"
 
 	"gopkg.in/russross/blackfriday.v2"
 )
@@ -34,14 +33,15 @@ func GenContent(filename string) []byte {
 }
 
 func GenSite(file string) {
-	if strings.Contains(strings.ToLower(file), ".md") {
-		fmt.Printf("Converting %v file to html", file)
+	if utils.GetExtension(file) == ".md" {
+		fmt.Printf("Converting %v file to html \n", file)
 		tmpl := GenContent(file)
 		output := blackfriday.Run(tmpl)
 		utils.WriteFile(output, file)
 		return
 	}
-	fmt.Printf("Converting %v file to html", file)
+
+	fmt.Printf("Converting %v file to html \n", file)
 	tmpl := GenContent(file)
 	utils.WriteFile(tmpl, file)
 }
@@ -54,7 +54,6 @@ func GenDirContent(directory string) {
 	}
 
 	files := utils.SearchTxtFiles(directory)
-
 	for _, file := range files {
 		GenSite(file)
 	}
