@@ -12,10 +12,8 @@ import (
 
 func RootDir() string {
 	_, b, _, _ := runtime.Caller(0)
-
 	d := path.Dir(b)
 	return filepath.Dir(d)
-
 }
 
 func ReadFile(file string) string {
@@ -23,13 +21,12 @@ func ReadFile(file string) string {
 	if err != nil {
 		log.Fatalf("Failed to read file! %v", err)
 	}
-
 	return string(fileContents)
 }
 
 func WriteFile(tmpl []byte, file string) {
 	fileName := strings.TrimSuffix(file, filepath.Ext(file)) + ".html"
-	if err := ioutil.WriteFile("exports/"+fileName, tmpl, 0666); err != nil {
+	if err := ioutil.WriteFile("exports/"+fileName, tmpl, 0644); err != nil {
 		log.Fatalf("Failed to write file %v", err)
 	}
 }
@@ -65,6 +62,5 @@ func SearchTxtFiles(directory string) []string {
 	}); err != nil {
 		panic(err)
 	}
-
 	return files
 }

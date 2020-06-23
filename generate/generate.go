@@ -23,12 +23,10 @@ func GenContent(filename string) []byte {
 	}
 
 	contentValue := tmplData{utils.ReadFile(filename)}
-
 	var b bytes.Buffer
 	if err := tmpl.Execute(&b, contentValue); err != nil {
 		log.Fatalf("Failed to execute the template! %v", err)
 	}
-
 	return b.Bytes()
 }
 
@@ -38,17 +36,15 @@ func GenSite(file string) {
 		tmpl := GenContent(file)
 		output := blackfriday.Run(tmpl)
 		utils.WriteFile(output, file)
-		return
+	} else {
+		fmt.Printf("Converting %v file to html \n", file)
+		tmpl := GenContent(file)
+		utils.WriteFile(tmpl, file)
 	}
-
-	fmt.Printf("Converting %v file to html \n", file)
-	tmpl := GenContent(file)
-	utils.WriteFile(tmpl, file)
 }
 
 func GenDirContent(directory string) {
 	validDirectory := utils.DoesDirectoryExist(directory)
-
 	if !(validDirectory) {
 		log.Fatalf("Directory '%v' does not exist!", directory)
 	}
